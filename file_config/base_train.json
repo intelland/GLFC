@@ -1,0 +1,47 @@
+{
+    "isTrain": true,
+    "phase": "train",
+    "random_seed": 42,
+    "dataset": {
+        "dataloader": {
+            "batch_size": 4,
+            "shuffle": true,
+            "num_workers": 4
+        },
+        "max_size": 100000,
+        "random_sample": true
+    },
+    "model": {
+        "start_epoch": 1,  
+        "lr_policy": "linear", //
+        "l_decay_flat": 100, // linear decay中 无linear学习率衰减的前半部分epoch
+        "l_decay_down": 0, //linear decay中 linear学习率衰减的后部分epoch
+        "cos_decay_cycle": 50, 
+        "step_decay_descent": 50 // step decay中每隔step_decay_descent个epoch乘一个衰减因子gamma
+    },
+    "network": {
+        "lr": 0.02,
+        "beta1": 0.99
+    },
+    "record": {
+        "checkpoints_dir": "./file_record", //config["record"]["checkpoints_dir"]
+        "use_visdom": false,
+        "visdom_port": 8080,
+        "visdom_ncols": 4,
+        "display_visdom_per_iter": 100, // 一个epoch中 每训练500个iter就展示一次结果到visdom上
+        
+        "use_html": true,
+        "display_size_html": 256, //
+        "display_html_per_iter": 500, //
+
+        "record_loss_per_iter": 100, //每训练1个epoch就展示一次loss
+        "save_model_per_epoch": 5, // 每5个epoch保存一次模型
+       
+        "val_per_epoch": 1,
+        
+        "CAM": {
+            "use_CAM": false,
+            "CAM_layer": "layer4"
+        }
+    }
+}

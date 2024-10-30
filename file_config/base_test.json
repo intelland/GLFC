@@ -1,0 +1,30 @@
+{
+    "isTrain": false,
+    "phase": "test",
+    "dataset": {
+        "dataloader": {
+            "batch_size": 1,
+            "shuffle": true,
+            "num_workers": 1
+        },
+        "max_size": 10000,
+        "random_sample": false
+    },
+    "record": {
+        "use_visdom": false,
+        "visdom_port": 8097,
+        "visdom_ncols": 4,
+        "display_visdom_per_iter": 50, // 一个epoch中 每训练500个iter就展示一次结果到visdom上
+        "use_html": true,
+        "display_size_html": 256, //
+        "display_html_per_iter": 50, //
+        "CAM": {
+            "use_CAM": true,
+            "display_CAM_per_iter": 10,
+            "CAM_layer": "downs.3"
+        }
+    },
+    "results":{
+        "results_dir": "./file_result"
+    }
+}

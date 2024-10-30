@@ -1,0 +1,29 @@
+{
+    "dataset": {
+        "dataroot": "./file_dataset/SynthRAD2023/brain3", 
+        "dataset_mode": "aligned",
+        "data_format": ".nii.gz",
+        "image_channel": 1
+    },
+    "preprocess":{
+        "resize": true,
+        "resize_size": 256,
+        "resize_method": "BILINEAR",// BICUBIC/BILINEAR
+        "crop": false,
+        "crop_size": 256,
+        "flip": false,
+        "flip_direction": "hv",
+        "clip": false,
+        "clip_range": [-1024,3000],
+        "manual_norm": true,
+        "manual_norm_range": [-1024,3000]
+    },
+    "network":{
+        "init_type": "normal",
+        "init_gain": 0.02 //scaling factor for normal, xavier and orthogonal
+    },
+    "record": {
+        "visdom_server": "localhost", 
+        "verbose": true
+    }
+}

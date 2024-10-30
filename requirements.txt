@@ -1,0 +1,20 @@
+# common 
+pip install dominate==2.6.0 visdom==0.2.4
+
+pip install pandas einops timm simpleitk
+
+# medical 
+simpleitk==2.3.1
+
+torch==1.8.1
+torchvision==0.9.1
+
+# mamba
+conda create -n mamba python==3.10 -y
+pip install torch==2.0.1 torchvision==0.15.2
+pip install packaging
+pip install mamba-ssm==1.2.0.post1
+pip install causal-conv1d==1.2.0.post2
+pip install fvcore 
+
+pip install dominate==2.6.0 visdom==0.2.4 simpleitk==2.3.1 torch torchvision

@@ -1,0 +1,88 @@
+{
+    "work_now": "UNet",
+    "work_list": [ 
+        "UNet",
+        "UNetPlusPlus",
+        "MEUNet"
+    ],
+    "UNet":{
+        "general":{
+            "name": "SR23_cbct2ct_brain_UNet", // experiments name
+            "dataset": {
+                    "dataset_mode": "aligned"
+                },
+            "model": {
+                "model_name": "vanillaSL",
+                "gpu_ids": [0]
+            },
+            "network": {
+                "filename": "unet",
+                "netG": "unet",
+                "ngf": 64, //the number of filters in the last conv layer
+                "down_step": 4,
+                "norm": "batch" // instance / layer / batch
+            }
+        },
+        "train":{
+            "network": {
+                "dropout": false
+            },
+            "MCL":{
+                "use_MCL": true,
+                "class_mask": "realtime_man", // prepared, realtime_auto, realtime_man
+                "class_mask_type": "class_3",
+                "class_weight": [3,3,3],
+                "class_mask_range": [[-1024,3000],[-250,250],[250,3000]], 
+                "class_norm": true
+            }
+        },
+        "test":{
+            "results":{
+                // "test_model_dir": "./file_record/CBCT2CT_Unet_4000/20240617_234918",
+                "test_epoch": "latest"
+            }
+        }
+    },
+    "UNetPlusPlus": {
+
+    },
+    "MEUNet": {
+        "general": {
+            "name": "MEUNet", // experiments name
+            "dataset": {
+                    "dataset_mode": "aligned"
+                },
+            "model": {
+                "model_name": "vanillaSL",
+                "gpu_ids": [0]
+            },
+            "network": {
+                "filename": "xeunet",
+                "netG": "meunet",
+                "ngf": 64, //the number of filters in the last conv layer
+                "down_step": 2,
+                "norm": "batch", // instance / layer / batch
+                "patch_sizes": [4,4,2,1],
+                "mamba_blocks": [16,0,4,2],
+                "residual": true
+            }
+        },
+        
+        "train": {
+            "network": {
+                "dropout": false,
+                "class_mask": "empty", // empty, prepared, realtime_auto, realtime_man
+                "classes": [0,1,2],
+                "class_weight": [3,3,3],
+                "class_mask_range": [[-1024,3000],[-250,250],[250,3000]], 
+                "class_norm": true
+            }
+        },
+        "test":{
+            "results":{
+                // "test_model_dir": "./file_record/CBCT2CT_Unet_4000/20240617_234918",
+                "test_epoch": "latest"
+            }
+        }
+    }
+}
